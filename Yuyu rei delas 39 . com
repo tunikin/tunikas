@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- 
+Tutorial: https://www.youtube.com/watch?v=zxxB9SFh9p4
+-->
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuyu</title>
+    <style>
+        body {
+            background-image: url('https://i.imgur.com/Bn1TjXf.jpeg');
+            /* Ajusta a imagem de fundo para cobrir toda a tela e não repetir */
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* Define a cor de fundo como um fallback caso a imagem não seja carregada */
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="conteudo">
+        <h2>Como responder um oi</h2>
+        <div style="margin: auto;width: 170px;">
+            <button style="position: fixed;display: block;" class="btn" onclick="sim()">Curtiu sua mensagem</button>
+            <button id="botaoOi" class="btn" onclick="desvia(this)" onmouseover="desvia(this)" style="position: absolute;">Oi</button>
+        </div>
+    </div>
+</body>
+<style>
+    #conteudo {
+        background: rgba(255, 255, 255, 0.8); /* Adiciona um fundo branco semi-transparente para melhor legibilidade */
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        text-align: center;
+        font-family: sans-serif;
+    }
+
+    .btn {
+        background: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 80px;
+        border-radius: 5px;
+    }
+
+    .imagem {
+        position: absolute;
+        z-index: 1;
+    }
+</style>
+
+<script>
+    var imagens = [
+        "https://i.imgur.com/H3qgjXy.jpeg",
+        "https://i.imgur.com/LB0RSXQ.png",
+        "https://i.imgur.com/8BejIls.png"
+    ];
+
+    function sim() {
+        alert("Você fez igual a Clara:)");
+        // redireciona para um URL após clicar no SIM
+        location.href = "https://www.youtube.com/shorts/jAAENXIX8l0";
+    }
+
+    function desvia(btn) {
+        // btn declarado na função
+        btn.style.position = 'absolute';
+        btn.style.bottom = geraPosicao(10, 90);
+        btn.style.left = geraPosicao(10, 90);
+
+        var imagem = document.createElement("img");
+        var randomIndex = Math.floor(Math.random() * imagens.length);
+        imagem.src = imagens[randomIndex];
+        imagem.classList.add("imagem");
+        imagem.style.top = geraPosicao(10, 90);
+        imagem.style.left = geraPosicao(10, 90);
+        document.body.appendChild(imagem);
+
+        setTimeout(function() {
+            imagem.remove();
+        }, 1500);
+
+        console.log('opa, desviei...');
+    }
+
+    function geraPosicao(min, max) {
+        return (Math.random() * (max - min) + min) + "%";
+    }
+
+</script>
+
+</html>
